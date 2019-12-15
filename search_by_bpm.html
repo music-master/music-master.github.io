@@ -1,0 +1,145 @@
+<!-- 
+  MusicMaster 
+  COGS 121, Spring 2019
+  June 5, 2019 
+  Final Project
+
+  File Name:      search_by_bpm.html 
+  Description:    This file contains the function to search by
+    a BPM value to receive a list of song recommendations
+    for DJs to use for their next mix/playlist.
+    We get song recommendations and other useful functions by using the Spotify API, which is
+    referenced in the <head>. This file includes a Go to Home Page button,
+    a modal to select up to 5 genres, playback functionality, a text box
+    to input a BPM value, a Search button, a Saved Songs button, and some
+    descriptive text to inform the user on how to navigate this page.
+    Additionally, when the user clicks Search, the list of song recommendations
+    get displayed, where the user can see each song's important audio features,
+    play the song, and save the song to their saved songs.
+-->
+
+<html>
+  <!-- contains CSS, JQuery, and Spotify API references -->
+  <head>
+    <title>MusicMaster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/search_pages.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.js"></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  </head>
+
+  <!-- Saved Songs button to go to Saved Songs page to display user's list of saved songs -->
+  <input type="image" placeholder= "Saved songs!" title="Saved songs!" id="savedMusicButton" src="../images/multimedia.png" onclick="window.location.href = 'saved_music.html';"></input>
+
+  <!-- contains playback functionality, genres modal, BPM input, and list of song recommendations -->
+  <body>
+    <div class="info">
+      <div id="notice"></div>
+      <div class="body">
+
+        <!-- Choose genres button to open up the modal -->
+        <!-- <div class="inline space-after" id='genres'>
+          <h3>Current genres: <span id="current-genres"></span></h3>
+          <button class="btn btn-aubergine btn-sm" id="choose-genres-button" data-toggle="modal" data-target="#genre-select" onclick="getGenresList();">Choose genres</button>
+        </div> -->
+
+        <!-- Playback Setting -->
+        <div class="inline">
+
+          <!-- Go to Home Page button -->
+          <div id="main">
+            <button id="backbutton" onclick="goBack()">Go to Home Page</button>
+          </div>
+
+          <h3 class="spacer">Playback Songs</h3>
+          <div class="radio-inline" onclick="setPlaybackSetting(1)">
+            <label>
+              <input type="radio" name="playback-setting" value="1" checked>
+              Yes
+              <span class="control-indicator"></span>
+            </label>
+          </div>
+          <div class="radio-inline" onclick="setPlaybackSetting(0)">
+            <label>
+              <input type="radio" name="playback-setting" value="0" >
+              No
+              <span class="control-indicator"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Choose genres button to open up the modal -->
+        <div class="inline space-after" id='genres'>
+          <h3 class="required-field">Current genres<span id="current-genres"></span></h3>
+          <button class="btn btn-aubergine btn-sm" id="choose-genres-button" data-toggle="modal" data-target="#genre-select" onclick="getGenresList();">Choose genres</button>
+        </div>
+
+        <!-- BPM value input and Search button to get recommendations -->
+        <div class="inline input">
+          <h4 class="required-field">Enter your target BPM value (40-200 BPM)</h4>
+          <input id="targetTempo" type="text" size="20" />
+          <button type="button" class="btn btn-aubergine" id="search-button" data-dismiss="modal" onclick="getRecommendations();">Search</button>
+        </div>
+      </div>
+
+      <!-- Descriptive text to help user understand how to navigate this page -->
+      <h4 id="hoverDirections"></h4>
+      <div id="tracks">
+        <!-- Tracks to be appended here -->
+      </div>
+    </div>
+
+    <!-- Choose Genres modal -->
+    <div class="modal fade" id="genre-select">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Top part of modal that has title and close button -->
+          <div class="modal-header" id="modal-title">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="select-genres-title">Select up to 5 genres you would like recommendations for</h4>
+          </div>
+
+          <!-- Middle part of modal to display relevant genres that the user can choose -->
+          <div class="modal-body">
+            <div id="genreLimitAlert" class="alert alert-danger alert-dismissible" role="alert" style="display:none;">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Oops! You can only select up to 5 genres.
+            </div>
+            <div id="genres-list" data-toggle="buttons">
+              <label class="btn btn-salmon btn-sm">
+                <!-- Buttons for each genre to be appended here -->
+              </label>
+            </div>
+          </div>
+
+          <!-- Bottom part of modal to display Select Genres button -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-aubergine" id="select-genres-button" data-dismiss="modal" onclick="updateGenres();">Select Genres</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->    
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase.js"></script>
+    <script src="js/client_search_by_bpm.js"></script>
+  </body>
+
+  <!-- Script to go back to home page -->
+  <script>
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+  </script>
+  
+  <!-- Script to open the genres when this page loads -->
+  <script>
+    jQuery(function(){jQuery('#choose-genres-button').click();});
+  </script>
+</html>
