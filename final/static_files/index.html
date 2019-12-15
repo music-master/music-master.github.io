@@ -1,0 +1,41 @@
+<!-- 
+  MusicMaster 
+  COGS 121, Spring 2019
+  June 5, 2019 
+  Final Project
+
+  File Name:      index.html 
+  Description:    This file contains the home page to our application.
+    Specifically, this file contains the images of our logo, an image
+    of a DJ and images of vinyl records to stay consistent with our 
+    target audience of DJs. 
+    In addition, the vinyl records act as buttons to search by either
+    a BPM value or a song title to receive a list of song recommendations
+    for DJs to use for their next mix/playlist.
+    Finally, there is a reference to the Firebase JS SDK so our application
+    uses the realtime database offered by Firebase.
+-->
+
+<!DOCTYPE html>
+<html>
+  <!-- contains CSS and JQuery references -->
+  <head>
+    <meta charset="utf-8">
+    <title>MusicMaster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery.js"></script>
+  </head>
+
+  <!-- contains images, buttons, and Firebase JS SDK reference -->
+  <body background="images/dj.png">
+    <input type="image" placeholder= "Saved songs!" title="Saved songs!" id="savedMusicButton" src="../images/multimedia.png" onclick="window.location.href = 'saved_music.html';"></input>
+    <div class="container" id="homebuttons">
+      <input type="image" src="../images/bpmvinyl.png"  class="indexImage" onclick="window.location.href = 'search_by_bpm.html';" ></input>
+      <input type="image" src="../images/songvinyl.png"  class="indexImage" onclick="window.location.href = 'search_by_song.html';"></input>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase.js"></script>
+  </body>
+</html>

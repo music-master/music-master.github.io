@@ -1,0 +1,324 @@
+/** 
+ * MusicMaster 
+ * COGS 121, Spring 2019
+ * June 5, 2019 
+ * Final Project
+ *
+ * Summary. 
+ * This file contains the CSS code to transform the style and layout of the search pages.
+ *
+ * Description.
+ * Specifically, this file contains the CSS code to standardize the text font and size, color scheme,
+ * and layout of the search pages. That way, we have the Go to Home Page button in the top left
+ * corner, playback functionality under the Go to Home Page button, Saved Music icon in the top right
+ * corner, list of songs such that the display is the following from left to right: remove icon, 
+ * album art, song name and artist name, and play and save icons. In addition, when the user plays
+ * a song, the background of that song turns to green, which indicates to the user that the current 
+ * song is playing. 
+ *
+ * @file   search_pages.css.
+ */
+
+/* CSS to update the style of the body, headers, buttons, and text of search pages */
+body {
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  background-color: #b7d2e4;
+}
+
+h2, h3, h4, h5 {
+  color: black;
+}
+
+h4 {
+  text-align: center;
+  font-weight: bold;
+}
+
+label {
+  color: black;
+}
+
+#main {
+  float: left;
+}
+
+#backbutton {
+  margin-left: 0;
+  margin-right: auto;
+  background-color: #1f3553;
+  color: white;
+  padding: 14px 20px;
+  margin: 10px 10px;
+  display: block;
+  border: none;
+}
+
+/* CSS for the genres buttons in the modal */
+#choose-genres-button, #search-button, #select-genres-button, #genre-button {
+  background-color: #1f3553;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+#choose-genres-button:hover, #search-button:hover, #select-genres-button:hover, #genre-button:hover, #saveButton:hover, #backbutton:hover, #play-button:hover {
+  opacity: 0.8;
+}
+
+#genre-button:active, #genre-button.active, .open > .dropdown-toggle#genre-button, #genre-button:active:hover, #genre-button.active:hover, .open > .dropdown-toggle#genre-button:hover {
+  background-color: #ff0064;
+  box-shadow: none;
+}
+
+/* Music and genre displays */
+#track-name, #select-genres-title {
+  color: #ff0064;
+}
+
+#curGenre {
+  margin: auto;
+  font-size: large;
+  color: #ff0064;
+}
+
+#searched-track {
+  margin-left: 465px;
+}
+
+.inline {
+  display: inline-table;
+}
+
+#track-name {
+  margin: 20px 0px 0px 0px;
+}
+
+#artist-name {
+  color: black;
+}
+
+#modal-title {
+  background-color: #182B49;
+  width: 100.02%;
+}
+
+/* Search parameters (genres modal, playback functionality, BPM input, song title input) */
+h3 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.spacer {
+  margin-right: 15px;
+  font-size: 16px;
+  margin-left: 15%;
+}
+
+.space-after {
+  margin-left: 41%;
+  text-align: center;
+}
+
+.radio-inline {
+  margin-left: 15%;
+}
+
+.input {
+  margin-left: 50%;
+}
+
+.song_input {
+  margin-left: 40%;
+  text-align: center;
+}
+
+.required-field::before {
+  content: "*";
+  color: red;
+}
+
+#notice {
+  width: 80%;
+}
+
+.info {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.info .body {
+  width: 80%;
+  padding: 10px 0px 0px 10px;
+}
+
+/* More CSS of genres */
+#songTempo {
+  padding-right: 120px; 
+}
+
+#search-button {
+  margin-left: 20px;
+}
+
+#current-user, #current-playback {
+  color: #f573a0;
+  margin-right: 20px;
+}
+
+.modal-dialog {
+  width: 80%;
+}
+
+#genres-list {
+  text-align: center;
+}
+
+#genres-list .btn {
+  margin: 5px;
+}
+
+/* Music tracks (album art, text, track elements) */
+.saved-tracks {
+  width: 100%;
+  height: 30%;
+  margin-left: 10%;
+}
+.saved-description {
+  display: block;
+  margin-left: 50%;
+}
+
+#tracks {
+  width: 100%;
+  height: 30%;
+  margin-left: 10%;
+}
+
+.track-element {
+  display: flex;
+  padding: 10px 0px 10px 12px;
+  float: left;
+  width: 50%;
+}
+
+.track-element > div {
+  display: inherit;
+}
+
+.current-track {
+  background-color: #08562B;
+}
+
+.current-track a {
+  color: white;
+}
+
+.album-art {
+  width: 100;
+  height: 100;
+  margin: 0 20px;
+}
+
+.remove-icon {
+  width: 15px;
+  height: 15px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.save-song-icon, .play-icon {
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  margin: 12px 0px 0px 20px;
+}
+
+.save-song-icon:hover, .play-icon:hover {
+  cursor: pointer;
+}
+
+/* quick reset */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* relevant styles for songs display */
+.img_wrap, .icon_wrap {
+  position: relative;
+  height: auto;
+  width: auto;
+}
+
+.img_description {
+  position: absolute;
+  top: 0;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  background: rgba(29, 106, 154, 0.72);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}
+
+.icon_description {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 60px;
+  right: 0;
+  background: rgba(29, 106, 154, 0.72);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}
+
+.img_wrap:hover .img_description {
+  visibility: visible;
+  border-radius: 15px;
+  font-size: 13px;
+  padding: 5px;
+  opacity: 1;
+}
+
+.icon_wrap:hover .icon_description {
+  visibility: visible;
+  opacity: 1;
+  cursor: pointer;
+}
+
+#tempo_hidden, #key_hidden, #energy_hidden, #danceability_hidden, #play_hidden, #save_hidden {
+  margin: 0;
+}
+
+#play_hidden, #save_hidden {
+  color: #ff0064;
+}
+
+#saveButton, #play-button {
+  background-color: #1f3553;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0 0 15px;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  min-width: 70px;
+}
+
+#savedMusicButton {
+  height: 115px;
+  width: 115px;
+  float: right;
+}

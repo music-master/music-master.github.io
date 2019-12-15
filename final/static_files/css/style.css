@@ -1,0 +1,111 @@
+/** 
+ * MusicMaster 
+ * COGS 121, Spring 2019
+ * June 5, 2019 
+ * Final Project
+ *
+ * Summary. 
+ * This file contains the CSS code to transform the style and layout of the index page (home page).
+ *
+ * Description.
+ * Specifically, this file contains the CSS code to standardize the text font and size, color scheme,
+ * and layout of the index page. That way, we have the Saved Music icon in the top left corner,
+ * app logo in the center with the introductory text, and the vinyl records icons that act as 
+ * buttons to search by either a BPM value or a song title to receive a list of song recommendations. 
+ *
+ * @file   style.css.
+ */
+
+/* CSS to update the style of the body, headers, buttons, and text of search pages */
+body {
+  background-color: #b7d2e4;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 950px 590px;
+  background-position: center top;
+}
+
+input[type=text], input[type=password] {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #b7d2e4;
+  color: #ff0064;
+  padding: 14px 20px;
+  margin:  0 auto;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  display: block;
+}
+
+.textBox, .profileOption{
+  width: 30%;
+  display: block;
+  margin: 0 auto;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+h1 {
+  color: #ff0064;
+  text-align: center;
+  margin-top: 200px;
+  display: inline-block;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+/* CSS for buttons, header, and text */
+div#homebuttons {
+  margin-top: 270px;
+}
+
+h3 {
+  color: white;
+}
+
+text {
+  color: white;
+}
+
+/* CSS for home.html buttons */
+.homeOptions {
+  margin: 50px;
+  width: 30%;
+  height: 200px;
+  font-size: 30px;
+}
+
+.container {
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+/* CSS for different buttons */
+#bpmButton {
+  width: auto;
+  display: inline;
+}
+
+.indexImage {
+  height: 250px;
+  width: 250px;
+  padding-left: 67px;
+  padding-right: 67px;
+  padding-top: 40px;
+}
+
+#savedMusicButton {
+  height: 115px;
+  width: 115px;
+}
